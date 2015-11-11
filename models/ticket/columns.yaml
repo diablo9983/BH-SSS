@@ -1,0 +1,47 @@
+# ===================================
+#  Column Definitions
+# ===================================
+
+columns:
+
+  id:
+    label: ID
+
+  subject:
+    label: Subject
+    searchable: true
+
+  created_by:
+    label: User
+    type: text
+    relation: createdby
+    select: @name
+
+  assigned_to:
+    label: Assigned To
+    type: text
+    relation: assignedto
+    select: @first_name
+
+  status:
+    label: Status
+
+  type:
+    label: Type
+
+  created_at:
+    label: Created
+    type: datetime
+
+  messagesCount:
+    label: Messages
+    relation: messagesCount
+    type: number
+    valueFrom: count
+    default: 0
+
+  last_message:
+    label: Last Message
+    type: text
+    relation: lastmessage
+    select: @name

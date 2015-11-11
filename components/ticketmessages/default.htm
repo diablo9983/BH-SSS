@@ -1,0 +1,46 @@
+{% set status = {
+  1: {
+    'class': 'success',
+    'text': 'New'
+  },
+  2: {
+    'class': 'info',
+    'text': 'In progress'
+  },
+  3: {
+    'class': 'warning',
+    'text': 'Waiting'
+  },
+  4: {
+    'class': 'danger',
+    'text': 'Closed'
+  }
+} %}
+<div class="ticket-info">
+  <div class="row">
+    <div class="col-md-3">
+      <span class="display-1">{{ status[ticket.status].text }}</span><br />
+      <span class="text-muted">Status</span>
+    </div>
+  </div>
+</div>
+<div class="messages">
+  {% for message in messages %}
+
+    <div class="message{% if message.backend %} message-staff{% endif %}">
+      <div class="avatar">
+        
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">{{ message.user.name }} {{ message.user.surname }} <small class="text-muted">({{ message.created_at|date('d.m.Y, h:i') }})</small></span>
+          {% if message.backend %}<div class="pull-right"><div class="label label-info">staff</div></div>{% endif %}
+        </div>
+        <div class="card-block">
+          {{ message.message }}
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+</div>

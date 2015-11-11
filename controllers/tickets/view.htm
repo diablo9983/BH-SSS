@@ -1,0 +1,80 @@
+<?php Block::put('breadcrumb') ?>
+  <ul>
+    <li><a href="">Tickets</a></li>
+    <li><?= $subject ?></li>
+  </ul>
+<?php Block::endPut() ?>
+
+<?php Block::put('form-sidebar') ?>
+  <div class="scoreboard">
+    <div data-control="toolbar">
+      <div class="scoreboard-item title-value">
+        <h4>Ticket ID</h4>
+        <p><?= $id ?></p>
+        <p class="description">created: <?= $created_at ?></p>
+      </div>
+
+      <div class="scoreboard-item title-value">
+        <h4>Status</h4>
+        <p>New</p>
+        <!-- p class="description">previous month: 32</p -->
+      </div>
+
+      <div class="scoreboard-item title-value">
+        <h4>User</h4>
+        <p class="oc-icon-user"><?= $createdby['name'] ?></p>
+        <p class="description">registered: <?= $createdby['created_at'] ?></p>
+      </div>
+
+      <div class="scoreboard-item title-value">
+        <h4>Assigned to</h4>
+        <p class="oc-icon-star"><?= $assignedto['first_name'].' '.$assignedto['last_name'] ?></p>
+      </div>
+    </div>
+  </div>
+<?php Block::endPut() ?>
+
+<?php Block::put('form-contents') ?>
+  <div class="scoreboard">
+    <div data-control="toolbar">
+      <div class="scoreboard-item title-value">
+        <h4>Subject</h4>
+        <p><?= $subject ?></p>
+      </div>
+    </div>
+  </div>
+  <div class="control-toolbar">
+    <div class="toolbar-item">
+      <div data-control="toolbar">
+        <a class="btn btn-default"><i class="oc-icon-arrow-left"></i> Return to tickets</a>
+
+        <button 
+          type="button"
+          class="btn btn-danger">
+          <i class="oc-icon-check"></i> Close ticket
+        </button>
+    </div>
+  </div>
+  </div>
+  
+  <?php foreach($messages as $m): ?>
+    
+    <div class="message">
+      <div class="message-title">
+        <?php if($m['backend']): ?>
+          <?= $m['user']['first_name'] ?> <?= $m['user']['last_name'] ?>
+        <?php else: ?>
+          <?= $m['user']['name'] ?> <?= $m['user']['surname'] ?>
+        <?php endif; ?>
+        <small class="text-muted">(<?= date('d.m.Y, h:i', strtotime($m['created_at'])) ?>)</small>
+      </div>
+      <div class="message-body">
+        <?= $m['message'] ?>
+      </div>
+    </div>
+  <?php endforeach; ?>
+<?php Block::endPut() ?>
+
+<?php Block::put('body') ?>
+  <?= $this->makeLayout('form-with-sidebar') ?>
+<?php Block::endPut(); ?>

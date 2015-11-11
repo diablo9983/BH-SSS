@@ -1,0 +1,53 @@
+div.scoreboard div.scoreboard-item {
+  margin-bottom: 10px;
+}
+.form-sidebar div.scoreboard div.scoreboard-item {
+  display: block;
+}
+.form-sidebar [data-control="toolbar"] {
+  overflow: visible;
+}
+.form-sidebar div.scoreboard div.scoreboard-item {
+  border-bottom: 1px dashed rgba(0,0,0,0.15);
+  padding: 0 15px 15px;
+  margin: 15px -20px 0;
+}
+.form-sidebar div.scoreboard div.scoreboard-item:first-child {
+  margin-top: 0;
+}
+.form-sidebar div.scoreboard div.scoreboard-item:last-child {
+  border-bottom: 0;
+}
+
+.form-sidebar .title-value p:not(.description) {
+  font-size: 24px;
+}
+#layout-body .control-toolbar {
+  background: #f6f6f6;
+  margin-left: -20px;
+  margin-right: -20px;
+  width: auto;
+  display: block;
+  padding: 10px 20px;
+  border-width: 1px 0;
+  border-style: dashed;
+  border-color: rgba(0,0,0,0.08);
+  margin-bottom: 10px;
+}
+
+.message {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.message-title {
+  font-size: 16px;
+  background-color: #fbfbfb;
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+.message-body {
+  padding: 20px;
+}

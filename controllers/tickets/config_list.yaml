@@ -1,0 +1,41 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: ~/plugins/bootstraphunter/support/models/ticket/columns.yaml
+
+# Model Class name
+modelClass: BootstrapHunter\Support\Models\Ticket
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 50
+
+# Displays the list column set up button
+showSetup: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Default sorting column
+defaultSort:
+    column: last_message
+    direction: desc
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+recordUrl: bootstraphunter/support/tickets/view/:id
+#filter: config_filter.yaml
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: list_toolbar
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt
