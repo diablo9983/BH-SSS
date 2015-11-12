@@ -2,6 +2,8 @@
 
 use DB;
 use Auth;
+use Cms\Classes\Page;
+use Cms\Classes\Theme;
 use Cms\Classes\ComponentBase;
 use BootstrapHunter\Support\Models\Ticket as TicketModel;
 
@@ -18,6 +20,35 @@ class Tickets extends ComponentBase
     ];
   }
 
+  public function defineProperties()
+  {
+    return [
+      'page' => [
+        'title'             => 'Page',
+        'description'       => 'Page where ticket details component will be used.',
+        'type'              => 'dropdown',
+        'required'          => 'true',
+        'validationMessage' => 'You must choose page.'
+      ]
+    ];
+  }
+
+  protected function getPageOptions()
+  {
+    $theme = Theme::getEditTheme();
+    $pages = Page::listInTheme($theme, true);
+
+    $options = [];
+    
+    foreach ($pages as $page) {
+      $options[$page->baseFileName] = $page->title.' ('.$page->url.')';
+    }
+
+    asort($options);
+
+    return $options;
+  }
+
   protected function tickets()
   {
     return TicketModel::where('user_id',Auth::getUser()->id)
@@ -29,11 +60,6 @@ class Tickets extends ComponentBase
   {
     $tickets = $this->tickets()->toArray();
     $this->page['tickets'] = $tickets;
-
-    /*
-    $tickets->each(function($ticket) {
-      $this->tickets[] = $ticket; 
-    });*/
   }
 
 }
