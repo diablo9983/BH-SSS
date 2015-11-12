@@ -12,8 +12,8 @@ class TicketMessages extends ComponentBase
   public function componentDetails()
   {
     return [
-      'name'        => 'Tickets',
-      'description' => 'List user support tickets and their status.'
+      'name'        => 'Ticket Details',
+      'description' => 'View ticket details with their messages.'
     ];
   }
 
