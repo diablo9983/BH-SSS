@@ -13,5 +13,8 @@ class NewTicket extends ComponentBase
     ];
   }
 
-
+  public function onRun()
+  {
+    
+  }
 }
