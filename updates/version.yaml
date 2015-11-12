@@ -1,3 +1,4 @@
 1.0.0:
     - First version of Support
     - create_tickets_table.php
+    - create_messages_table.php
