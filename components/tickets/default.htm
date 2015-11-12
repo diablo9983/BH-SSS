@@ -17,7 +17,6 @@
   }
 } %}
 
-
 {% if tickets is not empty %}
 
   <table class="table table-bordered table-striped">
@@ -29,7 +28,7 @@
     </thead>
   {% for ticket in tickets %}
     <tr>
-      <td><a href="/account/tickets/view/{{ ticket.id }}">{{ ticket.subject }}</a></td>
+      <td><a href="{{ page|replace({':num':ticket.id}) }}">{{ ticket.subject }}</a></td>
       <td>{{ ticket.updated_at|date('d M Y') }}</td>
       {#<td>{{ ticket.messages }}</td>#}
       <td>

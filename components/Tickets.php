@@ -35,18 +35,9 @@ class Tickets extends ComponentBase
 
   protected function getPageOptions()
   {
-    $theme = Theme::getEditTheme();
-    $pages = Page::listInTheme($theme, true);
+    $pages = Page::getNameList();
 
-    $options = [];
-    
-    foreach ($pages as $page) {
-      $options[$page->baseFileName] = $page->title.' ('.$page->url.')';
-    }
-
-    asort($options);
-
-    return $options;
+    return $pages;
   }
 
   protected function tickets()
@@ -59,6 +50,15 @@ class Tickets extends ComponentBase
   public function onRun()
   {
     $tickets = $this->tickets()->toArray();
+
+    $theme = Theme::getEditTheme();
+    $pages = Page::listInTheme($theme, true);
+
+    foreach ($pages as $page) {
+      if($page->baseFileName == $this->property('page')) {
+        $this->page['page'] = $page->url;
+      }
+    }
     $this->page['tickets'] = $tickets;
   }
 
