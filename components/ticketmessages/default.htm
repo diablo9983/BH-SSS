@@ -16,11 +16,18 @@
     'text': 'Closed'
   }
 } %}
-<div class="ticket-info">
-  <div class="row">
-    <div class="col-md-3">
-      <span class="display-1">{{ status[ticket.status].text }}</span><br />
+<div class="ticket-info page-header clearfix">
+  <div class="pull-left">
+    <span class="h1">{{ ticket.subject }}</span><br />
+    <span class="text-muted">Subject</span>
+  </div>
+  <div class="pull-right">
+    <div style="display: inline-block;vertical-align: middle;">
+      <span class="h1">{{ status[ticket.status].text }}</span><br />
       <span class="text-muted">Status</span>
+    </div>
+    <div style="display: inline-block;vertical-align: middle;margin-left: 25px;">
+      <a href="#" class="btn btn-danger">Close Ticket</a>
     </div>
   </div>
 </div>
@@ -31,12 +38,12 @@
       <div class="avatar">
         
       </div>
-      <div class="card">
-        <div class="card-header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
           <span class="card-title">{{ message.user.name }} {{ message.user.surname }} <small class="text-muted">({{ message.created_at|date('d.m.Y, h:i') }})</small></span>
           {% if message.backend %}<div class="pull-right"><div class="label label-info">staff</div></div>{% endif %}
         </div>
-        <div class="card-block">
+        <div class="panel-body">
           {{ message.message }}
         </div>
       </div>
