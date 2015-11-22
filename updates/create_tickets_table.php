@@ -3,7 +3,7 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class CreateItemsTable extends Migration
+class CreateTicketsTable extends Migration
 {
 
     public function up()
@@ -20,8 +20,6 @@ class CreateItemsTable extends Migration
             $table->integer('type')->unsigned();
             $table->integer('last_message')->unsigned();
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 

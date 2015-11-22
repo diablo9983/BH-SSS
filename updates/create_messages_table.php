@@ -3,7 +3,7 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class CreateItemsTable extends Migration
+class CreateMessagesTable extends Migration
 {
 
     public function up()
@@ -18,8 +18,6 @@ class CreateItemsTable extends Migration
             $table->text('message');
             $table->tinyInteger('message_type')->unsigned()->default('1');
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 
