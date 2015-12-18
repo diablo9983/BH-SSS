@@ -2,6 +2,7 @@
 
 use DB;
 use Auth;
+use Flash;
 use Cms\Classes\Page;
 use Cms\Classes\Theme;
 use Cms\Classes\ComponentBase;
@@ -42,6 +43,9 @@ class Tickets extends ComponentBase
 
   protected function tickets()
   {
+    if(!Auth::check()) {
+      return null;
+    }
     return TicketModel::where('user_id',Auth::getUser()->id)
                         ->orderBy('updated_at','desc')
                         ->get();
@@ -49,8 +53,13 @@ class Tickets extends ComponentBase
 
   public function onRun()
   {
-    $tickets = $this->tickets()->toArray();
+    $tickets = $this->tickets();
+    if(is_null($tickets)) {
+      Flash::error('Invalid request.');
+      return redirect('/');
+    }
 
+    $tickets = $tickets->toArray();
     $theme = Theme::getEditTheme();
     $pages = Page::listInTheme($theme, true);
 

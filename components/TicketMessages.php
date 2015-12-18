@@ -1,6 +1,7 @@
 <?php namespace BootstrapHunter\Support\Components;
 
 use Auth;
+use Flash;
 use Cms\Classes\ComponentBase;
 use Backend\Models\User as BackendUserModel;
 use BootstrapHunter\Support\Models\Ticket as TicketModel;
@@ -40,7 +41,13 @@ class TicketMessages extends ComponentBase
 
   public function onRun()
   {
-    $this->page['ticket'] = TicketModel::find($this->property('ticket_id'))->toArray();
+    $ticket = TicketModel::find($this->property('ticket_id'));
+    if(is_null($ticket)) {
+      Flash::error('Invalid Ticked ID.');
+      return redirect('/tickets');
+    }
+
+    $this->page['ticket'] = $ticket->toArray();
     $users = ['backend' => [], 'frontend' => []];
     $messages = [];
     $i = 0;
@@ -62,7 +69,7 @@ class TicketMessages extends ComponentBase
         } else {
           if(!isset($users['frontend'][$message->user_id])) {
             $users['frontend'][$message->user_id] = $message->user->select('name','surname')->get()->first()->toArray();
-          }          
+          }
           $messages[$i]['user'] = $users['frontend'][$message->user_id];
         }
       }
